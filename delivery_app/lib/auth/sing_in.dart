@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:delivery_app/homePage.dart';
+import 'package:delivery_app/screens/home/homePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -14,6 +14,8 @@ class SingIn extends StatefulWidget {
   @override
   State<SingIn> createState() => _SingInState();
 }
+
+//singup with google account
 
 class _SingInState extends State<SingIn> {
   _googleSignUp() async {
