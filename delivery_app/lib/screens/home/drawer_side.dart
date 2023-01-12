@@ -1,4 +1,5 @@
 import 'package:delivery_app/confiq/colors.dart';
+import 'package:delivery_app/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,8 +12,9 @@ class DrawerSide extends StatefulWidget {
 }
 
 class _DrawerSideState extends State<DrawerSide> {
-  Widget listTile({IconData? icon, String? title}) {
+  Widget listTile({IconData? icon, String? title, VoidCallback? onTap}) {
     return ListTile(
+      onTap: onTap,
       leading: Icon(
         icon,
         size: 32,
@@ -76,7 +78,14 @@ class _DrawerSideState extends State<DrawerSide> {
             ),
             listTile(icon: Icons.home, title: "Home"),
             listTile(icon: Icons.shopping_bag_outlined, title: "Review Cart"),
-            listTile(icon: Icons.person_outline, title: "My Profile"),
+            listTile(
+              icon: Icons.person_outline,
+              title: "My Profile",
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Myprofile()));
+              },
+            ),
             listTile(icon: Icons.notifications, title: "Notification"),
             listTile(
                 icon: Icons.star_border_outlined, title: "Rating and Review"),
