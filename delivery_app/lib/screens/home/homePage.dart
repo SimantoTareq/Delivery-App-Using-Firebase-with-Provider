@@ -1,7 +1,8 @@
 import 'package:delivery_app/confiq/colors.dart';
 import 'package:delivery_app/screens/home/drawer_side.dart';
 import 'package:delivery_app/screens/home/product.dart';
-import 'package:delivery_app/screens/home/product_overview/product_overview.dart';
+import 'package:delivery_app/screens/product_overview/product_overview.dart';
+import 'package:delivery_app/screens/search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -30,11 +31,17 @@ class _HomePageState extends State<HomePage> {
         actions: [
           CircleAvatar(
             radius: 12,
-            backgroundColor: Color(0xffd4d181),
-            child: Icon(
-              Icons.search,
-              size: 17,
-              color: Colors.black,
+            backgroundColor: primaryColor,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Search()));
+              },
+              icon: Icon(
+                Icons.search,
+                size: 17,
+                color: Colors.black,
+              ),
             ),
           ),
           Padding(
@@ -45,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                 size: 17,
                 color: Colors.black,
               ),
-              backgroundColor: Color(0xffd4d181),
+              backgroundColor: Colors.transparent,
               radius: 12,
             ),
           )

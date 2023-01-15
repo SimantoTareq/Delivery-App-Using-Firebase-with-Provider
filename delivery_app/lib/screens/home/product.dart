@@ -1,5 +1,5 @@
 import 'package:delivery_app/confiq/colors.dart';
-import 'package:delivery_app/screens/home/product_overview/product_overview.dart';
+import 'package:delivery_app/screens/product_overview/product_overview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
