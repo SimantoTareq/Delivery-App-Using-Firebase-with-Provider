@@ -1,4 +1,5 @@
 import 'package:delivery_app/confiq/colors.dart';
+import 'package:delivery_app/review_cart/review_cart.dart';
 import 'package:delivery_app/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -77,7 +78,14 @@ class _DrawerSideState extends State<DrawerSide> {
               ),
             ),
             listTile(icon: Icons.home, title: "Home"),
-            listTile(icon: Icons.shopping_bag_outlined, title: "Review Cart"),
+            listTile(
+              icon: Icons.shopping_bag_outlined,
+              title: "Review Cart",
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ReviewCart()));
+              },
+            ),
             listTile(
               icon: Icons.person_outline,
               title: "My Profile",

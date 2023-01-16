@@ -1,5 +1,5 @@
 import 'package:delivery_app/confiq/colors.dart';
-import 'package:delivery_app/screens/search/search_item.dart';
+import 'package:delivery_app/widgets/single_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -44,11 +44,11 @@ class Search extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
+          SingleItem(),
+          SingleItem(),
+          SingleItem(),
+          SingleItem(),
+          SingleItem(),
         ],
       ),
     );
