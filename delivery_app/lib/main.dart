@@ -1,8 +1,10 @@
 import 'package:delivery_app/auth/sing_in.dart';
 import 'package:delivery_app/confiq/colors.dart';
+import 'package:delivery_app/providers/product_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,12 +18,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-            primaryColor: primaryColor,
-            scaffoldBackgroundColor: scaffoldBackgroundColor),
-        home: SingIn());
+    return ChangeNotifierProvider<ProductProvider>(
+      create: (context) => ProductProvider(),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+              primaryColor: primaryColor,
+              scaffoldBackgroundColor: scaffoldBackgroundColor),
+          home: SingIn()),
+    );
   }
 }

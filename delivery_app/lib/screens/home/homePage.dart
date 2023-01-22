@@ -1,4 +1,5 @@
 import 'package:delivery_app/confiq/colors.dart';
+import 'package:delivery_app/providers/product_provider.dart';
 import 'package:delivery_app/screens/home/drawer_side.dart';
 import 'package:delivery_app/screens/home/product.dart';
 import 'package:delivery_app/screens/product_overview/product_overview.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,8 +18,100 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late ProductProvider productProvider;
+  // Widget _buildHerbsProduct(context) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Padding(
+  //         padding: EdgeInsets.symmetric(vertical: 20),
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           children: [
+  //             Text("Herbs Seasonings"),
+  //             Text("View all"),
+  //           ],
+  //         ),
+  //       ),
+  //       SingleChildScrollView(
+  //         scrollDirection: Axis.horizontal,
+  //         child: Row(
+  //           children: productProvider.getHerbsProductDataList.map(
+  //             (e) {
+  //               return Product(
+  //                 onTap: () {
+  //                   Navigator.of(context).push(MaterialPageRoute(
+  //                       builder: (context) => ProductOverview(
+  //                             productName: "Fresh Basil",
+  //                             productImage: "images/basil.png",
+  //                           )));
+  //                 },
+  //                 productImage: 'images/basil.png',
+  //                 productName: 'Fresh Basil',
+  //               );
+  //             },
+  //           ).toList(),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  Widget _buildHerbsProduct(context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Herbs Seasonings'),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: productProvider.getHerbsProductDataList.map(
+              (herbsProductData) {
+                return Product(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ProductOverview(
+                          productName: "Fresh Basil",
+                          productImage: "images/basil.png",
+                        ),
+                      ),
+                    );
+                  },
+                  productImage: 'images/basil.png',
+                  productName: 'Fresh Basil',
+                );
+              },
+            ).toList(),
+            // children: [
+
+            // ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ProductProvider initproductProvider = Provider.of(context, listen: false);
+    initproductProvider.fatchHerbsProductData();
+  }
+
   @override
   Widget build(BuildContext context) {
+    productProvider = Provider.of(context);
+
     return Scaffold(
       backgroundColor: Color(0xffcbcbcb),
       drawer: DrawerSide(),
@@ -30,8 +124,8 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           CircleAvatar(
-            radius: 12,
-            backgroundColor: primaryColor,
+            radius: 15,
+            backgroundColor: Color(0xffd6d382),
             child: IconButton(
               onPressed: () {
                 Navigator.of(context)
@@ -52,8 +146,8 @@ class _HomePageState extends State<HomePage> {
                 size: 17,
                 color: Colors.black,
               ),
-              backgroundColor: Colors.transparent,
-              radius: 12,
+              backgroundColor: Color(0xffd6d382),
+              radius: 15,
             ),
           )
         ],
@@ -159,69 +253,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10,
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Product(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ProductOverview(
-                            productName: "Fresh Basil",
-                            productImage: "images/basil.png",
-                          ),
-                        ),
-                      );
-                    },
-                    productImage: 'images/basil.png',
-                    productName: 'Fresh Basil',
-                  ),
-                  Product(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ProductOverview(
-                            productName: "Fresh Mint",
-                            productImage: "images/mint2.jpg",
-                          ),
-                        ),
-                      );
-                    },
-                    productImage: 'images/mint2.jpg',
-                    productName: 'Fresh Mint',
-                  ),
-                  Product(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ProductOverview(
-                            productName: "Fresh Prasley",
-                            productImage: "images/parsley.png",
-                          ),
-                        ),
-                      );
-                    },
-                    productImage: "images/parsley.png",
-                    productName: "Fresh Prasley",
-                  ),
-                  Product(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ProductOverview(
-                            productName: "Fresh Chives",
-                            productImage: "images/chives.png",
-                          ),
-                        ),
-                      );
-                    },
-                    productImage: 'images/chives.png',
-                    productName: 'Fresh Chives',
-                  ),
-                ],
-              ),
-            ),
+            _buildHerbsProduct(context),
             SizedBox(
               height: 10,
             ),

@@ -44,11 +44,21 @@ class Search extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          SingleItem(),
-          SingleItem(),
-          SingleItem(),
-          SingleItem(),
-          SingleItem(),
+          SingleItem(
+            isBool: false,
+          ),
+          SingleItem(
+            isBool: false,
+          ),
+          SingleItem(
+            isBool: false,
+          ),
+          SingleItem(
+            isBool: false,
+          ),
+          SingleItem(
+            isBool: false,
+          ),
         ],
       ),
     );
